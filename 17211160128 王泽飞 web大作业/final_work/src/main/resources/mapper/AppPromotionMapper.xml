@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.final_work.dao.AdPromotion.AdPromotionMapper">
+
+    <select id="getadlist" resultType="AdPromotion">
+        select * from ad_promotion
+    </select>
+    <select id="getadlistnyid" resultType="AdPromotion" parameterType="int">
+        select * from ad_promotion where id=#{id};
+    </select>
+    <update id="modifyad">
+        update ad_promotion
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+            <if test="appId != null">appId=#{appId},</if>
+            <if test="adPicPath != null">adPicPath=#{adPicPath},</if>
+            <if test="adPV != null">adPV=#{adPV},</if>
+            <if test="carouselPosition != null">carouselPosition=#{carouselPosition},</if>
+            <if test="startTime != null">startTime=#{startTime},</if>
+            <if test="endTime != null">endTime=#{endTime},</if>
+            <if test="createdBy != null">createdBy=#{createdBy},</if>
+            <if test="creationDate != null">creationDate=#{creationDate},</if>
+            <if test="modifyBy != null">modifyBy=#{modifyBy},</if>
+            <if test="modifyDate != null">modifyDate=#{modifyDate},</if>
+        </trim>
+    </update>
+    <insert id="insertad" parameterType="AdPromotion">
+		insert into appinfodb.ad_promotion(appId,adPicPath,adPV,carouselPosition,
+		startTime,endTime,createdBy,creationDate,modifyBy,modifyDate)
+		values
+	    (#{appId},#{adPicPath},#{adPV},#{carouselPosition},
+		#{startTime},#{endTime},#{createdBy},#{creationDate},#{modifyBy},#{modifyDate})
+	</insert>
+    <delete id="delappad" parameterType="int">
+        delete from  ad_promotion where id=#{id}
+    </delete>
+
+    <select id="getAppADinfo" resultMap="appad" >
+		select u.*,p.id,p.softwareName from ad_promotion u,app_info p
+		where u.appId=p.id
+	</select>
+    <resultMap id="appad" type="AdPromotion">
+        <id property="id" column="id"></id>
+        <result property="adPV" column="adPV"></result>
+        <result property="appId" column="appId"></result>
+        <result property="carouselPosition" column="carouselPosition"></result>
+        <result property="adPicPath" column="adPicPath"></result>
+        <result property="startTime" column="startTime"></result>
+        <result property="endTime" column="endTime"></result>
+        <result property="createdBy" column="createdBy"></result>
+        <result property="creationDate" column="creationDate"></result>
+        <result property="modifyBy" column="modifyBy"></result>
+        <result property="modifyDate" column="modifyDate"></result>
+        <association property="appInfo" javaType="AppInfo">
+            <id property="id" column="id"></id>
+            <result property="softwareName" column="softwareName"></result>
+        </association>
+    </resultMap>
+
+    <select id="getAppADinfofind" resultMap="selectad" >
+		select u.*,p.softwareName from ad_promotion u,app_info p
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="appId!= null and appId!= ''">
+                and appId=#{appId}
+            </if>
+        </trim>
+	</select>
+    <resultMap id="selectad" type="AdPromotion">
+        <id property="id" column="id"></id>
+        <result property="adPV" column="adPV"></result>
+        <result property="appId" column="appId"></result>
+        <result property="carouselPosition" column="carouselPosition"></result>
+        <result property="adPicPath" column="adPicPath"></result>
+        <result property="startTime" column="startTime"></result>
+        <result property="endTime" column="endTime"></result>
+        <result property="createdBy" column="createdBy"></result>
+        <result property="creationDate" column="creationDate"></result>
+        <result property="modifyBy" column="modifyBy"></result>
+        <result property="modifyDate" column="modifyDate"></result>
+        <association property="appInfo" javaType="AppInfo">
+            <id property="id" column="id"></id>
+            <result property="softwareName" column="softwareName"></result>
+        </association>
+    </resultMap>
+</mapper>

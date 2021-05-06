@@ -1,0 +1,69 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<HEAD>
+    <TITLE>后台管理系统</TITLE>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <link th:href="@{/css/mystyle.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'/>
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/jquery.velocity.min.js}"></script>
+</HEAD>
+<body>
+<!--      导航        -->
+<!--      用户登录表单        -->
+<div class="t" style="MARGIN-TOP: 15px" align="center">
+    <div class="cotn_principal" style="margin-top: -2.5%">
+        <div class="cont_centrar" style="margin-top: 10%">
+            <div class="cont_login">
+                <div class="cont_info_log_sign_up">
+                    <div class="col_md_login">
+                        <div class="cont_ba_opcitiy">
+                            <h2>LOGIN</h2>
+                            <p>后台管理系统入口</p>
+                            <button class="btn_login" onClick="cambiar_login()">LOGIN</button>
+                        </div>
+                    </div>
+                    <div class="col_md_sign_up">
+                        <div class="cont_ba_opcitiy">
+                            <h2>LOGIN</h2>
+                            <p>开发者平台入口</p>
+                            <button class="btn_sign_up" onClick="cambiar_sign_up()">LOGIN</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_back_info">
+                    <div class="cont_img_back_grey"> <img th:src="@{/images/po.jpg}" alt="" /> </div>
+                </div>
+                <div class="cont_forms" >
+                    <div class="cont_img_back_"> <img th:src="@{/images/po.jpg}" alt="" /> </div>
+                    <form name="loginform"  th:action="@{/manager2/dologin}" method="post">
+                        <div class="cont_form_login"> <a href="" ><i class="material-icons">&#xE5C4;</i></a>
+                            <h2>LOGIN</h2>
+                            <input type="text" placeholder="Username" name="userCode" value="admin"/>
+                            <input type="password" placeholder="userPassword" name="userPassword" value="admin" />
+                            <button class="btn_login" type="submit">LOGIN</button>
+                        </div>
+                    </form>
+
+                    <form name="loginform"  th:action="@{/dev/dologin}" method="post" style="padding-top: 15%">
+                        <div class="cont_form_sign_up"> <a href="" ><i class="material-icons">&#xE5C4;</i></a>
+                            <h2>LOGIN</h2>
+                            <div>
+                                <input type="text" placeholder="User" name="devCode" id="devCode"/>
+                            </div>
+                            <input type="password" placeholder="Password" name="devPassword"/>
+                            <br/>
+                            <button class="btn_sign_up" tabIndex="3" type="submit">LOGIN</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+<CENTER class="gray">版权信息</CENTER>
+<script th:src="@{/js/index.js}"></script>
+</body>
+</html>

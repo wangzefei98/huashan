@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.final_work.dao.appcategory.AppCategoryMapper">
+
+	<select id="getAppCategoryListByParentId" resultType="AppCategory">
+		select id,categoryCode,categoryName from app_category
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="parentId != null">
+				and parentId = #{parentId}
+			</if>
+			<if test="parentId == null">
+				and parentId is null
+			</if>
+		</trim>
+	</select>
+	<select id="getAppCategoryList" resultType="AppCategory">
+		select * from app_category
+	</select>
+	<insert id="insertcategory" parameterType="AppCategory">
+		insert into appinfodb.app_category(categoryCode,categoryName,parentId,createdBy,
+		creationDate,modifyBy,modifyDate)
+		values
+	    (#{categoryCode},#{categoryName},#{parentId},#{createdBy},
+		#{creationDate},#{modifyBy},#{modifyDate})
+	</insert>
+    <select id="getAppCategory" resultType="AppCategory" parameterType="int">
+		select * from app_category where id=#{id}
+	</select>
+
+
+	<update id="appcategorymodify" parameterType="AppCategory">
+			update appinfodb.app_category
+			<trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+				<if test="categoryCode != null">categoryCode=#{categoryCode},</if>
+				<if test="categoryName != null">categoryName=#{categoryName},</if>
+				<if test="parentId != null">parentId=#{parentId},</if>
+				<if test="createdBy != null">createdBy=#{createdBy},</if>
+				<if test="creationDate != null">creationDate=#{creationDate},</if>
+				<if test="modifyBy != null">modifyBy=#{modifyBy},</if>
+				<if test="modifyDate != null">modifyDate=#{modifyDate},</if>
+			</trim>
+	</update>
+    <delete id="deleteappcategory" parameterType="int">
+        delete from app_category where id=#{id}
+    </delete>
+	<select id="appcategoryfind" resultType="AppCategory" parameterType="AppCategory">
+        select * from app_category
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="categoryCode!= null and categoryCode!= ''">
+                and categoryCode like CONCAT ('%',#{categoryCode},'%')
+            </if>
+            <if test="categoryName!= null and categoryName!= ''" >
+                and categoryName like CONCAT ('%',#{categoryName},'%')
+            </if>
+
+        </trim>
+    </select>
+</mapper>

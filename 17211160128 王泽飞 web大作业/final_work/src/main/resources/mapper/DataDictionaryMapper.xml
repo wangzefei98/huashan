@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.final_work.dao.datadictionary.DataDictionaryMapper">
+
+	<select id="getDataDictionaryList" resultType="DataDictionary">
+		select * from  data_dictionary
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="typeCode != null">
+				and typeCode = #{typeCode}
+			</if>
+		</trim>
+		<!-- order by creationDate DESC  -->
+	</select>
+
+	<select id="getDictionaryList" resultType="DataDictionary">
+		select * from  data_dictionary
+		<!-- order by creationDate DESC  -->
+	</select>
+
+	<select id="getdatabyid" resultType="DataDictionary" parameterType="int">
+		select * from  data_dictionary where id=#{id}
+		<!-- order by creationDate DESC  -->
+	</select>
+
+	<update id="modifydata" parameterType="DataDictionary">
+			update appinfodb.data_dictionary
+			<trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+				<if test="typeCode != null">typeCode=#{typeCode},</if>
+				<if test="typeName != null">typeName=#{typeName},</if>
+				<if test="valueName != null">valueName=#{valueName},</if>
+				<if test="valueId != null">valueId=#{valueId},</if>
+				<if test="createdBy != null">createdBy=#{createdBy},</if>
+				<if test="creationDate != null">creationDate=#{creationDate},</if>
+				<if test="modifyBy != null">modifyBy=#{modifyBy},</if>
+				<if test="modifyDate != null">modifyDate=#{modifyDate},</if>
+			</trim>
+	</update>
+
+	<insert id="insertdata" parameterType="DataDictionary">
+		insert into appinfodb.data_dictionary(typeCode,typeName,valueId,valueName,
+		createdBy,creationDate,modifyBy,modifyDate)
+		values
+	    (#{typeCode},#{typeName},#{valueId},#{valueName},
+		#{createdBy},#{creationDate},#{modifyBy},#{modifyDate})
+	</insert>
+
+	<select id="finddata" resultType="DataDictionary" parameterType="DataDictionary">
+		select * from data_dictionary
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="typeCode!= null and typeCode!= ''">
+				and typeCode like CONCAT ('%',#{typeCode},'%')
+			</if>
+            <if test="typeName!= null and typeName!= ''" >
+                and typeName like CONCAT ('%',#{typeName},'%')
+            </if>
+			<if test="valueName!= null and valueName!=''">
+				and valueName like CONCAT ('%',#{valueName},'%')
+			</if>
+		</trim>
+	</select>
+</mapper>

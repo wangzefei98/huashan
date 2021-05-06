@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>APP后台管理系统</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/green.css}" rel="stylesheet"/>
+    <!--<link th:href="@{/css/font.min.css}" rel="stylesheet"/>-->
+    <!--<link href="../../static/css/font-awesome.min.css" rel="stylesheet"/>-->
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/nprogress.css}" rel="stylesheet"/>
+    <link th:href="@{/css/custom.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/jqvmap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/localcss/applist.css}" rel="stylesheet"/>
+</head>
+<body class="nav-md footer_fixed">
+<div class="container body">
+    <div class="main_container">
+
+        <div th:replace="backend/header::head1"></div>
+        <div th:replace="backend/header::head2"></div>
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="clearfix"></div>
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>
+                                    APP 审核列表 <i class="fa fa-user"></i><small><span th:text="${session.backinfo.userName}"></span>
+                                    - 您可以通过搜索或者其他的筛选项对APP的信息进行审核操作。^_^</small>
+                                </h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <form method="post" th:action="@{/manager2/backend/app/devfind}">
+                                    <input type="hidden" name="pageIndex" value="1" />
+                                    <ul>
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">用户名称</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input name="queryDevName" type="text" class="form-control col-md-7 col-xs-12"/>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li><button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button></li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_content">
+                                <p class="text-muted font-13 m-b-30"></p>
+                                <div id="datatable-responsive_wrapper"
+                                     class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+                                                   cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
+                                                <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        style="width: 70px;" aria-label="First name: activate to sort column descending"
+                                                        aria-sort="ascending">用户账号</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        style="width: 10px;"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        用户名称</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        style="width: 90px;"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        用户邮箱</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        style="width: 50px;"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        创建时间</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        style="width: 50px;"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        用户简介</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        style="width: 30px;"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        审核状态</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        style="width: 30px;"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        审核</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr role="row" class="odd" th:each="devuser:${devList}">
+                                                    <td tabindex="0" class="sorting_1" th:text="${devuser.getDevCode()}"></td>
+                                                    <td th:text="${devuser.getDevName()}"></td>
+                                                    <td th:text="${devuser.getDevEmail()}"></td>
+                                                    <td th:text="${devuser.creationDate}"></td>
+                                                    <td th:text="${devuser.getDevInfo() }"></td>
+                                                    <td th:text="${devuser.status }"></td>
+                                                    <!--th:appinfoid="${appInfo.id}" th:versionid="${appInfo.versionId}"-->
+                                                    <!--th:status="${appInfo.status}" th:statusname="${appInfo.statusName}"-->
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a  th:href="@{/manager2/backend/app/statusmodify/}+${devuser.id}">
+                                                                <button type="button"
+                                                                        class="glyphicon glyphicon-ok">
+                                                                </button>
+                                                            </a>
+                                                            <a th:href="@{/manager2/backend/app/statusmodify2/}+${devuser.id}">
+                                                                <button type="button" class="glyphicon glyphicon-remove"></button>
+                                                            </a>
+
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="dataTables_info" id="datatable-responsive_info"
+                                                 role="status" aria-live="polite">共<span th:text="${pageInfo.total}"></span>条记录
+                                                <span th:text="${pageInfo.pageNum}"></span>/
+                                                <span th:text="${pageInfo.pages}"></span>页</div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="dataTables_paginate paging_simple_numbers"
+                                                 id="datatable-responsive_paginate">
+                                                <ul class="pagination">
+                                                    <li>
+                                                        <a th:href="@{/manager2/backend/app/DevStatus(pageNow=${pageInfo.firstPage})}">首页</a>
+                                                    </li>
+                                                    <li>
+                                                        <a th:href="@{/manager2/backend/app/DevStatus(pageNow=${pageInfo.prePage})}">&laquo;</a>
+                                                    </li>
+                                                    <li th:each="p:${pageInfo.navigatepageNums}">
+                                                        <a th:text="${p}" th:href="@{/manager2/backend/app/DevStatus(pageNow=${p})}"></a>
+                                                    </li>
+                                                    <li>
+                                                        <a th:href="@{/manager2/backend/app/DevStatus(pageNow=${pageInfo.nextPage})}">&#187;</a>
+                                                    </li>
+                                                    <li><a th:href="@{/manager2/backend/app/DevStatus(pageNow=${pageInfo.lastPage})}">末页</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+<!-- footer content -->
+<footer>
+    <div class="pull-right">
+        ©2016 All Rights Reserved.
+    </div>
+    <div class="clearfix"></div>
+</footer>
+<!-- /footer content -->
+</body>
+<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.js}" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/fastclick.js}" type="text/javascript"></script>
+<script th:src="@{/js/nprogress.js}" type="text/javascript"></script>
+<script th:src="@{/js/custom.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}" type="text/javascript"></script>
+</html>

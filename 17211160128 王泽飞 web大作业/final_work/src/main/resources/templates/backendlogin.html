@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>后台管理系统</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <script th:href="@{/css/jquery-1.8.3.min.js}" type="text/javascript"></script>
+    <script th:href="@{/js/bootstrap.js}" type="text/javascript"></script>
+    <script th:href="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/nprogress.css}" rel="stylesheet"/>
+    <link th:href="@{/css/custom.min.css}" rel="stylesheet"/>
+</head>
+<body class="login">
+<div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            <section class="login_content">
+                <form th:action="@{/manager2/dologin}" method="post">
+                    <h1>后台管理系统</h1>
+                    <div>
+                        <input type="text" class="form-control" name="userCode" placeholder="请输入用户名" required="" />
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" name="userPassword" placeholder="请输入密码" required="" />
+                    </div>
+                    <span th:text="${session.error}"></span>
+                    <div>
+                        <button type="submit" class="btn btn-success">登     录</button>
+                        <button type="reset" class="btn btn-default">重　填</button>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <div>
+                            <p>©2016 All Rights Reserved. </p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>APP开发者平台</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/green.css}" rel="stylesheet"/>
+    <link th:href="@{/css/dropzone.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!--<link th:href="@{/css/font.min.css}" rel="stylesheet"/>-->
+    <!--<link href="../../static/css/font-awesome.min.css" rel="stylesheet"/>-->
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/nprogress.css}" rel="stylesheet"/>
+    <link th:href="@{/css/custom.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/jqvmap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/localcss/appinfoadd.css}" rel="stylesheet"/>
+    <link th:href="@{/localcss/appinfolist.css}" rel="stylesheet"/>
+</head>
+<body class="nav-md footer_fixed">
+<div class="container body">
+    <div class="main_container">
+        <!--<div class="col-md-3 left_col menu_fixed">-->
+            <!--<div class="left_col scroll-view">-->
+                <!--<div class="navbar nav_title" style="border: 0;">-->
+                    <!--<a th:href="@{/dev/flatform/main}" class="site_title"><i class="fa fa-paw"></i> <span>APP-->
+								<!--BMS</span>-->
+                    <!--</a>-->
+                <!--</div>-->
+
+                <!--<div class="clearfix"></div>-->
+
+                <!--&lt;!&ndash; menu profile quick info &ndash;&gt;-->
+                <!--<div class="profile">-->
+                    <!--<div class="profile_pic">-->
+                        <!--<img-->
+                                <!--th:src="@{/images/img.jpg}"-->
+                                <!--alt="..." class="img-circle profile_img"/>-->
+                    <!--</div>-->
+                    <!--<div class="profile_info">-->
+                        <!--<span>Welcome,</span>-->
+                        <!--<h2><span th:text="${session.devinfo.getDevCode()}"></span></h2>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /menu profile quick info &ndash;&gt;-->
+
+                <!--<br />-->
+
+                <!--&lt;!&ndash; sidebar menu &ndash;&gt;-->
+                <!--<div id="sidebar-menu"-->
+                     <!--class="main_menu_side hidden-print main_menu">-->
+                    <!--<div class="menu_section">-->
+                        <!--<h3><span th:text="${session.devinfo.getDevName()}"></span></h3>-->
+                        <!--<ul class="nav side-menu">-->
+                            <!--<li><a><i class="fa fa-home"></i> APP账户管理 <span-->
+                                    <!--class="fa fa-chevron-down"></span>-->
+                            <!--</a>-->
+                                <!--<ul class="nav child_menu">-->
+                                    <!--<li><a href="javascript:;">APP开发者账户申请</a>-->
+                                    <!--</li>-->
+                                    <!--<li><a href="javascript:;">个人账户信息维护</a>-->
+                                    <!--</li>-->
+                                <!--</ul></li>-->
+                            <!--<li><a><i class="fa fa-edit"></i> APP应用管理<span-->
+                                    <!--class="fa fa-chevron-down"></span>-->
+                            <!--</a>-->
+                                <!--<ul class="nav child_menu">-->
+                                    <!--<li><a th:href="@{/dev/flatform/app/list}">APP维护</a>-->
+                                    <!--</li>-->
+                                <!--</ul></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+
+
+                <!--</div>-->
+                <!--&lt;!&ndash; /sidebar menu &ndash;&gt;-->
+
+                <!--&lt;!&ndash; /menu footer buttons &ndash;&gt;-->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a> <a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                    <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                <!--</a> <a data-toggle="tooltip" data-placement="top" title="Lock"> <span-->
+                        <!--class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                <!--</a> <a data-toggle="tooltip" data-placement="top" title="Logout"-->
+                        <!--th:href="@{/dev/flatform/main}"> <span-->
+                        <!--class="glyphicon glyphicon-off" aria-hidden="true"></span> </a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /menu footer buttons &ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+        <div th:replace="developer/head::head1"></div>
+        <div th:replace="developer/head::head2"></div>
+        <!-- top navigation -->
+        <!--<div class="top_nav">-->
+            <!--<div class="nav_menu">-->
+                <!--<nav>-->
+                    <!--<div class="nav toggle">-->
+                        <!--<a id="menu_toggle"><i class="fa fa-bars"></i>-->
+                        <!--</a>-->
+                    <!--</div>-->
+
+                    <!--<ul class="nav navbar-nav navbar-right">-->
+                        <!--<li class=""><a href="javascript:;"-->
+                                        <!--class="user-profile dropdown-toggle" data-toggle="dropdown"-->
+                                        <!--aria-expanded="false"> <img-->
+                                <!--th:src="@{/images/img.jpg}"-->
+                                <!--alt=""/><span th:text="${session.devinfo.getDevCode()}"></span> <span-->
+                                <!--class=" fa fa-angle-down"></span> </a>-->
+                            <!--<ul class="dropdown-menu dropdown-usermenu pull-right">-->
+                                <!--<li><a-->
+                                        <!--th:href="@{/dev/flatform/main}"><i-->
+                                        <!--class="fa fa-sign-out pull-right"></i> Log Out</a>-->
+                                <!--</li>-->
+                            <!--</ul></li>-->
+
+                        <!--<li role="presentation" class="dropdown">-->
+
+                            <!--<ul id="menu1" class="dropdown-menu list-unstyled msg_list"-->
+                                <!--role="menu">-->
+                                <!--<li><a> <span class="image"><img-->
+                                        <!--th:src="@{/images/img.jpg}"-->
+                                        <!--alt="Profile Image" />-->
+										<!--</span> <span> <span>John Smith</span> <span class="time">3-->
+													<!--mins ago</span> </span> <span class="message"> Film festivals used-->
+												<!--to be do-or-die moments for movie makers. They were where...-->
+										<!--</span> </a></li>-->
+                                <!--<li><a> <span class="image"><img-->
+                                        <!--th:src="@{/images/img.jpg}"-->
+                                        <!--alt="Profile Image" />-->
+										<!--</span> <span> <span>John Smith</span> <span class="time">3-->
+													<!--mins ago</span> </span> <span class="message"> Film festivals used-->
+												<!--to be do-or-die moments for movie makers. They were where...-->
+										<!--</span> </a></li>-->
+                                <!--<li><a> <span class="image"><img-->
+                                        <!--th:src="@{/images/img.jpg}"-->
+                                        <!--alt="Profile Image" />-->
+										<!--</span> <span> <span>John Smith</span> <span class="time">3-->
+													<!--mins ago</span> </span> <span class="message"> Film festivals used-->
+												<!--to be do-or-die moments for movie makers. They were where...-->
+										<!--</span> </a></li>-->
+                                <!--<li><a> <span class="image"><img-->
+                                        <!--th:src="@{/images/img.jpg}"-->
+                                        <!--alt="Profile Image" />-->
+										<!--</span> <span> <span>John Smith</span> <span class="time">3-->
+													<!--mins ago</span> </span> <span class="message"> Film festivals used-->
+												<!--to be do-or-die moments for movie makers. They were where...-->
+										<!--</span> </a></li>-->
+                                <!--<li>-->
+                                    <!--<div class="text-center">-->
+                                        <!--<a> <strong>See All Alerts</strong> <i-->
+                                                <!--class="fa fa-angle-right"></i> </a>-->
+                                    <!--</div></li>-->
+                            <!--</ul></li>-->
+                    <!--</ul>-->
+                <!--</nav>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!-- /top navigation -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>
+                                    APP 信息管理维护 <i class="fa fa-user"></i><small><span th:text="${session.devinfo.getDevName()}"></span>
+                                    - 您可以通过搜索或者其他的筛选项对APP的信息进行修改、删除等管理操作。^_^</small>
+                                </h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <form method="post" th:action="@{/dev/flatform/app/list}">
+                                    <input type="hidden" name="pageIndex" value="1" />
+                                    <ul>
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">软件名称</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" th:value="${querySoftwareName }"/>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">APP状态</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <select name="queryStatus" class="form-control">
+                                                            <option value="" th:if="${statusList ne null }">&#45;&#45;请选择&#45;&#45;</option>
+                                                         <span th:each="dataDictionary:${statusList}">
+                                                             <option th:value="${dataDictionary.valueId}"
+                                                                     th:text="${dataDictionary.valueName}">
+                                                             </option>
+                                                        </span>
+                                                        <!--<c:if test="${statusList != null }">-->
+                                                            <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                                                            <!--<c:forEach var="dataDictionary" items="${statusList}">-->
+                                                                <!--<option> <c:if test="${dataDictionary.valueId == queryStatus }">selected="selected"</c:if>-->
+                                                                <!--value="${dataDictionary.valueId}">${dataDictionary.valueName}</option>-->
+                                                            <!--</c:forEach>-->
+                                                        <!--</c:if>-->
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">所属平台</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <select name="queryFlatformId" class="form-control">
+                                                        <!--<c:if test="${flatFormList != null }">-->
+                                                            <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                                                            <!--<c:forEach var="dataDictionary" items="${flatFormList}">-->
+                                                                <!--<option> <c:if test="${dataDictionary.valueId == queryFlatformId }">selected="selected"</c:if>-->
+                                                                <!--value="${dataDictionary.valueId}">${dataDictionary.valueName}</option>-->
+                                                            <!--</c:forEach>-->
+                                                        <!--</c:if>-->
+                                                        <p th:if="${flatFormList!=null}">
+                                                            <option  value="" >--请选择--</option>
+                                                            <option th:each="dataDictionary:${flatFormList}" th:text="${dataDictionary.valueName}"
+                                                                    th:value="${dataDictionary.valueId}" th:selected="${queryFlatformId eq dataDictionary.valueId}"></option>
+                                                        </p>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">一级分类</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <select id="queryCategoryLevel1" name="queryCategoryLevel1" class="form-control">
+                                                        <!--<c:if test="${categoryLevel1List != null }">-->
+                                                            <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                                                            <!--<c:forEach var="appCategory" items="${categoryLevel1List}">-->
+                                                                <!--<option> <c:if test="${appCategory.id == queryCategoryLevel1 }">selected="selected"</c:if>-->
+                                                                <!--value="${appCategory.id}">${appCategory.categoryName}</option>-->
+                                                            <!--</c:forEach>-->
+                                                        <!--</c:if>-->
+                                                        <option  value="" th:if="${categoryLevel1List ne null }">--请选择--</option>
+                                                        <span th:each="appCategory:${categoryLevel1List}">
+                                                                <option
+                                                                        th:value="${appCategory.id}" th:text="${appCategory.categoryName}"
+                                                                ></option>
+                                                            </span>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">二级分类</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="hidden" name="categorylevel2list" id="categorylevel2list"/>
+                                                    <select name="queryCategoryLevel2" id="queryCategoryLevel2" class="form-control">
+                                                        <!--<c:if test="${categoryLevel2List != null }">-->
+                                                            <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                                                            <!--<c:forEach var="appCategory" items="${categoryLevel2List}">-->
+                                                                <!--<option> <c:if test="${appCategory.id == queryCategoryLevel2 }">selected="selected"</c:if>-->
+                                                                <!--value="${appCategory.id}">${appCategory.categoryName}</option>-->
+                                                            <!--</c:forEach>-->
+                                                        <!--</c:if>-->
+                                                        <option  value="" th:if="${categoryLevel2List ne null }">--请选择--</option>
+                                                        <span th:each="appCategory:${categoryLevel2List}">
+                                                                <option
+                                                                        th:value="${appCategory.id}" th:text="${appCategory.categoryName}"
+                                                                ></option>
+                                                            </span>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">三级分类</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <select name="queryCategoryLevel3" id="queryCategoryLevel3" class="form-control">
+                                                        <!--<c:if test="${categoryLevel3List != null }">-->
+                                                            <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                                                            <!--<c:forEach var="appCategory" items="${categoryLevel3List}">-->
+                                                                <!--<option> <c:if test="${appCategory.id == queryCategoryLevel3 }">selected="selected"</c:if>-->
+                                                                <!--value="${appCategory.id}">${appCategory.categoryName}</option>-->
+                                                            <!--</c:forEach>-->
+                                                        <!--</c:if>-->
+                                                        <option  value="" th:if="${categoryLevel3List ne null }">--请选择--</option>
+                                                        <span th:each="appCategory:${categoryLevel3List}">
+                                                                <option
+                                                                        th:value="${appCategory.id}" th:text="${appCategory.categoryName}"
+                                                                ></option>
+                                                            </span>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li><button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button></li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_content">
+                                <p class="text-muted font-13 m-b-30"></p>
+                                <div id="datatable-responsive_wrapper"
+                                     class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a th:href="@{/dev/flatform/app/appinfoadd}" class="btn btn-success btn-sm">新增APP基础信息</a>
+                                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+                                                   cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
+                                                <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        aria-label="First name: activate to sort column descending"
+                                                        aria-sort="ascending">软件名称</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        APK名称</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        软件大小(单位:M)</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        所属平台</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        所属分类(一级分类、二级分类、三级分类)</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        状态</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        下载次数</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        最新版本号</th>
+                                                    <th class="sorting" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                        style="width: 124px;"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr role="row" class="odd" th:each="appInfo:${appInfoList}" >
+                                                        <td tabindex="0" class="sorting_1" th:text="${appInfo.softwareName}"></td>
+                                                        <td th:text="${appInfo.APKName }"></td>
+                                                        <td th:text="${appInfo.softwareSize }"></td>
+                                                        <td th:text="${appInfo.flatformName }"></td>
+                                                        <td><span th:text="${appInfo.categoryLevel1Name }"></span> ->
+                                                            <span th:text="${appInfo.categoryLevel2Name }"></span> ->
+                                                            <span th:text="${appInfo.categoryLevel3Name}"></span></td>
+                                                        <td><span th:id="appInfoStatus+${appInfo.id}"><span th:text="${appInfo.statusName }"></span></span></td>
+                                                        <td th:text="${appInfo.downloads }"></td>
+                                                        <td th:text="${appInfo.versionNo }"></td>
+                                                        <td>
+                                                            <div class="btn-group">
+                                                                <button type="button" class="btn btn-danger">点击操作</button>
+                                                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                                    <span class="caret"></span>
+                                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                                </button>
+                                                                <ul class="dropdown-menu" role="menu">
+                                                                    <li>
+                                                                        <a th:if="${appInfo.status == 2 || appInfo.status == 5}"
+                                                                           class="saleSwichOpen"
+                                                                           th:attr="appinfoid=${appInfo.id },saleSwitch='open',
+                                                                           appsoftwarename=${appInfo.softwareName}"
+                                                                           data-toggle="tooltip" data-placement="top"
+                                                                           title="" data-original-title="恭喜您，您的审核已经通过，
+                                                                           您可以点击上架发布您的APP">上架</a>
+                                                                        <a th:if="${appInfo.status == 4}"
+                                                                           class="saleSwichClose"
+                                                                           th:attr="appinfoid=${appInfo.id },saleSwitch='close',
+                                                                           appsoftwarename=${appInfo.softwareName}"
+                                                                           data-toggle="tooltip" data-placement="top" title="" data-original-title="您可以点击下架来停止发布您的APP，
+                                                                           市场将不提供APP的下载">下架</a>
+                                                                    </li>
+                                                                    <li><a class="addVersion"
+                                                                           th:attr="appinfoid=${appInfo.id}"
+                                                                           data-toggle="tooltip" data-placement="top" title="" data-original-title="新增APP版本信息">新增版本</a>
+                                                                    </li>
+                                                                    <li><a class="modifyVersion"
+                                                                           th:attr="appinfoid=${appInfo.id },versionid=${appInfo.versionId},
+                                                                           status=${appInfo.status },statusname=${appInfo.statusName }"
+                                                                           data-toggle="tooltip" data-placement="top" title="" data-original-title="修改APP最新版本信息">修改版本</a>
+                                                                    </li>
+                                                                    <li><a  class="modifyAppInfo"
+                                                                            th:attr="appinfoid=${appInfo.id},status=${appInfo.status},
+                                                                            statusname= ${appInfo.statusName}"
+                                                                            data-toggle="tooltip" data-placement="top" title="" data-original-title="修改APP基础信息">修改</a></li>
+                                                                    <li><a  class="viewApp" th:href="@{/dev/flatform/app/appview/}+${appInfo.id}"
+                                                                            data-toggle="tooltip" data-placement="top" title=""
+                                                                            data-original-title="查看APP基础信息以及全部版本信息">查看</a></li>
+                                                                    <li><a  class="deleteApp"
+                                                                            th:attr="appinfoid=${appInfo.id },
+                                                                             appsoftwarename=${appInfo.softwareName}"
+                                                                            data-toggle="tooltip" data-placement="top" title=""
+                                                                            data-original-title="删除APP基础信息以及全部版本信息">删除</a></li>
+                                                                </ul>
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="dataTables_info" id="datatable-responsive_info"
+                                                 role="status" aria-live="polite">共<span th:text="${pages.totalCount}"></span>条记录
+                                                <span th:text="${pages.currentPageNo}"></span>/
+                                                <span th:text="${pages.totalPageCount}"></span>页</div>
+                                            <!--<div class="dataTables_info" id="datatable-responsive_info"-->
+                                                 <!--role="status" aria-live="polite">共${pages.totalCount }条记录-->
+                                                <!--${pages.currentPageNo }/${pages.totalPageCount }页</div>-->
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="dataTables_paginate paging_simple_numbers"
+                                                 id="datatable-responsive_paginate">
+                                                <ul class="pagination">
+                                                    <li hidden="hidden" id="currentPageNo" th:value="${pages.getCurrentPageNo()}"></li>
+                                                    <li hidden="hidden" id="totalPageCount" th:value="${pages.getTotalPageCount()}"> </li>
+                                                    <li class="paginate_button previous" th:if="${pages.getCurrentPageNo() > 1}"><a
+                                                            href="javascript:page_nav(document.forms[0],1);"
+                                                            aria-controls="datatable-responsive" data-dt-idx="0"
+                                                            tabindex="0">首页</a>
+                                                    </li>
+                                                    <li class="paginate_button"  th:if="${pages.getCurrentPageNo() > 1}"><a
+                                                            href="javascript:page_nav(document.forms[0],$('#currentPageNo').val()-1);"
+                                                            aria-controls="datatable-responsive" data-dt-idx="1"
+                                                            tabindex="0">上一页</a>
+                                                    </li>
+                                                    <li class="paginate_button " th:if="${pages.getCurrentPageNo()} lt ${pages.getTotalPageCount()}"><a
+                                                            href="javascript:page_nav(document.forms[0],$('#currentPageNo').val()+1);"
+                                                            aria-controls="datatable-responsive" data-dt-idx="1"
+                                                            tabindex="0">下一页</a>
+                                                    </li>
+                                                    <li class="paginate_button next" th:if="${pages.getCurrentPageNo()} lt ${pages.getTotalPageCount()}"><a
+                                                            href="javascript:page_nav(document.forms[0],$('#totalPageCount').val());"
+                                                            aria-controls="datatable-responsive" data-dt-idx="7"
+                                                            tabindex="0">最后一页</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">©2016 All Rights Reserved.</div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+</body>
+<script th:src="@{/js/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<!-- FastClick -->
+<script th:src="@{/js/fastclick.js}"></script>
+<!-- NProgress -->
+<script th:src="@{/js/nprogress.js}"></script>
+<!-- jQuery custom content scroller -->
+<script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+<!-- Custom Theme Scripts -->
+<script th:src="@{/js/custom.min.js}"></script>
+<!-- dropzone -->
+<script th:src="@{/js/dropzone.js}"></script>
+
+<script th:src="@{/localjs/rollpage.js}"></script>
+<script th:src="@{/localjs/appinfolist.js}"></script>
+
+<!--<script th:src="@{/js/jquery.min.js}"></script>-->
+<!--<script th:src="@{/js/bootstrap.js}" ></script>-->
+<!--<script th:src="@{/js/bootstrap.min.js}" ></script>-->
+<!--<script th:src="@{/js/fastclick.js}" ></script>-->
+<!--<script th:src="@{/js/nprogress.js}" ></script>-->
+<!--<script th:src="@{/js/cus.min.js}"></script>-->
+<!--<script th:src="@{/js/dropzone.js}"></script>-->
+<!--<script th:src="@{/localjs/appinfolist.js}"></script>-->
+<!--<script th:src="@{/localjs/rollpage.js}"></script>-->
+<!--<script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"></script>-->
+</html>

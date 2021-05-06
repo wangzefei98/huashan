@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <script th:href="@{/css/jquery-1.8.3.min.js}" type="text/javascript"></script>
+    <script th:href="@{/js/bootstrap.js}" type="text/javascript"></script>
+    <script th:href="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <title>后台管理系统</title>
+</head>
+<body class="login">
+<div class="login_wrapper">
+    <h1 style="text-align: center;color: #73879C;padding-top: 10%">APP信息管理平台</h1>
+    <div style="text-align: center;margin-top: 3%">
+        <a th:href="@{/manager2/login}" class="btn btn-link">后台管理系统 入口</a>
+    </div>
+    <div style="text-align: center">
+        <a th:href="@{/dev/login}" class="btn btn-link">开发者平台 入口</a>
+    </div>
+
+</div>
+
+</body>
+</html>

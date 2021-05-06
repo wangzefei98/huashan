@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>APP后台管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <script th:src="@{/localjs/applist.js}" type="text/javascript"></script>
+    <!--<link th:href="@{/css/font.min.css}" rel="stylesheet"/>-->
+    <!--<link href="../../static/css/font-awesome.min.css" rel="stylesheet"/>-->
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/nprogress.css}" rel="stylesheet"/>
+    <link th:href="@{/css/custom.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/jqvmap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/localcss/applist.css}" rel="stylesheet"/>
+</head>
+<body class="nav-md footer_fixed">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="backend/header::head1"></div>
+        <div th:replace="backend/header::head2"></div>
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="clearfix"></div>
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>
+                                    应用统计图 <i class="fa fa-user"></i><small>
+                                    <span th:text="${session.backinfo.userName}"></span>
+                                  </small>
+                                </h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                    <input type="hidden" name="pageIndex" value="1" />
+                                    <ul>
+                                        <li><button type="button" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button></li>
+                                        <li><button type="button" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button></li>
+                                        <!--<li><a th:href="@{/manager2/backend/app/backuseradd}"><button type="button" class="btn btn-primary"> 增 &nbsp;&nbsp;&nbsp;&nbsp;加 </button></a></li>-->
+
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="x_panel">
+                            <div class="x_content">
+                                <div id="main" style="">
+                                    <div style="text-align: center ">
+                                        <div class="col-md-12" style="">
+                                            <div class="col-md-6">
+                                            <div id="main1" style="width: 450px;height:450px;padding-left: 10px"></div>
+                                            <script type="text/javascript">
+                                                var data=[];
+                                                var name=[];
+                                                $.ajax({
+                                                    type:"post",
+                                                    async : true,
+                                                    url:"countbysoftname.json",
+                                                    dataType:"json",
+                                                    success : function(result) {
+                                                        if (result) {
+                                                            for(var i=0;i<result.length;i++){
+                                                                name.push(result[i].categoryName);
+                                                                data.push(result[i].count);
+                                                            }
+                                                        }
+                                                    }
+                                                });
+                                                // 基于准备好的dom，初始化echarts实例
+                                                var myChart = echarts.init(document.getElementById('main1'));
+                                                // 指定图表的配置项和数据
+                                                var option = {
+                                                    title: {
+                                                        text: '软件数量',
+                                                        textStyle: { //数值样式
+                                                            color: '#666',
+                                                            fontSize: 20
+                                                        }
+                                                    },
+                                                    tooltip : {
+                                                        trigger: 'item'
+                                                    },
+                                                    legend: {
+                                                        data:['数量']
+                                                    },
+                                                    xAxis: {
+                                                        data: name,
+                                                        axisTick:{
+                                                            show:false
+                                                        },
+                                                        axisLine:{
+                                                            lineStyle:{
+                                                                color:'#666'
+                                                            }
+                                                        }
+                                                    },
+                                                    color : ['blue'],
+                                                    yAxis: {
+                                                        type : 'value',
+                                                        axisLine:{
+                                                            show:false,
+                                                            lineStyle:{
+                                                                color:'#666'
+                                                            }
+                                                        }, //y轴线消失
+                                                        max:10,
+                                                        min:0,
+                                                        interval:5,
+                                                        splitNumber:2,
+                                                        name:'数量',
+                                                        nameTextStyle:{},
+                                                        axisTick:{
+                                                            show:false ,
+                                                            color: 'white'
+                                                        },
+                                                        nameRotate:90,
+                                                        nameGap:10,
+                                                        nameLocation:'center'
+                                                    },
+                                                    series: [{
+                                                        name: '数量',
+                                                        type: 'bar',
+                                                        data: data,
+                                                        color:['deepskyblue'],
+                                                        barWidth : 30,
+                                                        itemStyle: {
+                                                        normal: {
+                                                        label: {
+                                                            show: true, //开启显示
+                                                                position: 'top', //在上方显示
+                                                                textStyle: { //数值样式
+                                                                color: 'deepskyblue',
+                                                                    fontSize: 12}
+                                                        }
+                                                    }
+                                                }
+                                                }]
+                                                };
+                                                // 使用刚指定的配置项和数据显示图表。
+                                                myChart.setOption(option);
+                                            </script>
+                                        </div>
+                                            <div class="col-md-6" style="margin-top: 10px;width: 425px;height: 425px;color: #666666;font-size: 11px">
+                                                <div id="main3" style="width: 560px;height:560px;padding-top: 10px;"></div>
+                                                <script type="text/javascript">
+                                                    var myChart = echarts.init(document.getElementById('main3'));
+                                                    // 绘制图表。
+                                                    var option = {
+                                                        title : {
+                                                            text: '统计软件信息',
+                                                            x:'center'
+                                                        },
+                                                        tooltip : {
+                                                            trigger: 'item',
+                                                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                                        },
+                                                        legend: {
+                                                            orient: 'vertical',
+                                                            left: 'left',
+                                                            data: ["系统工具","桌面插件","休闲游戏","益智游戏"]
+                                                        },
+                                                        series : [
+                                                            {
+                                                                name: '数量',
+                                                                type: 'pie',
+                                                                radius : '55%',
+                                                                data:(function () {
+                                                                    var arr=[];
+                                                                    $.ajax({
+                                                                        type:"post",
+                                                                        async : true,
+                                                                        data:{},
+                                                                        url:"countbysoftname.json",
+                                                                        dataType:"json",
+                                                                        success : function(result) {
+                                                                            if (result) {
+                                                                                for(var i=0;i<result.length;i++){
+                                                                                    arr.push({
+                                                                                        name:result[i].categoryName,
+                                                                                        value:result[i].count
+                                                                                    });
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    });
+                                                                }),
+                                                                itemStyle: {
+                                                                    emphasis: {
+                                                                        shadowBlur: 10,
+                                                                        shadowOffsetX: 0,
+                                                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    };
+                                                    myChart.setOption(option);
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+<!-- footer content -->
+<footer>
+    <div class="pull-right">
+        ©2016 All Rights Reserved.
+    </div>
+    <div class="clearfix"></div>
+</footer>
+<!-- /footer content -->
+</body>
+<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.js}" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/fastclick.js}" type="text/javascript"></script>
+<script th:src="@{/js/nprogress.js}" type="text/javascript"></script>
+<script th:src="@{/js/custom.min.js}" type="text/javascript"></script>
+<script th:src="@{/localjs/rollpage.js}" type="text/javascript"></script>
+<script th:src="@{/localjs/delappad.js}" type="text/javascript"></script>
+<script th:src="@{/js/echarts.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}" type="text/javascript"></script>
+
+</html>

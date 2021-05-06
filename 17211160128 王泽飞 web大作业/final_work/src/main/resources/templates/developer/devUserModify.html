@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>APP开发者平台</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/green.css}" rel="stylesheet"/>
+    <link th:href="@{/css/dropzone.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!--<link th:href="@{/css/font.min.css}" rel="stylesheet"/>-->
+    <!--<link href="../../static/css/font-awesome.min.css" rel="stylesheet"/>-->
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/nprogress.css}" rel="stylesheet"/>
+    <link th:href="@{/css/custom.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/jqvmap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/localcss/appinfoadd.css}" rel="stylesheet"/>
+    <link th:href="@{/localcss/appinfolist.css}" rel="stylesheet"/>
+</head>
+<body class="nav-md footer_fixed">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="developer/head::head1"></div>
+        <div th:replace="developer/head::head2"></div>
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>修改APP基础信息 <i class="fa fa-user"></i><small>
+                                    <span th:text="${session.devinfo.getDevName()}"></span></small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <form class="form-horizontal form-label-left" th:action="@{/dev/flatform/app/devUsermodifysave}" method="post" enctype="multipart/form-data">
+                                    <!--<input type="hidden" name="id" id="id" th:value="${appInfo.id}"/>-->
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="devName">用户名称 <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input id="devName" class="form-control col-md-7 col-xs-12"
+                                                   data-validate-length-range="20" data-validate-words="1"
+                                                   name="devName" th:value="${devUser.getDevName()}" required="required"
+                                                   placeholder="请输入软件名称" type="text"/><span id="devName1"></span>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="devCode">用户账号 <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input id="devCode" type="text" class="form-control col-md-7 col-xs-12"
+                                                   name="devCode" th:value="${devUser.getDevCode()}" readonly="readonly"/><span id="devCode1">
+                                        </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="devPassword">用户密码 <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input id="devPassword" class="form-control col-md-7 col-xs-12"
+                                                   name="devPassword" th:value="${devUser.getDevPassword()}" required="required"
+                                                   data-validate-length-range="20" data-validate-words="1"
+                                                   placeholder="用户密码" type="password"/><span id="password"></span>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="devPassword1">再次输入密码 <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input id="devPassword1" class="form-control col-md-7 col-xs-12"
+                                                   data-validate-length-range="20" data-validate-words="1"  required="required"
+                                                   name="devPassword1" th:value="${devUser.getDevPassword()}"
+                                                   placeholder="再次输入用户密码" type="password"/><span id="password2"></span>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="devEmail">用户邮箱 <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="devEmail" name="devEmail" th:value="${devUser.getDevEmail()}" required="required"
+                                                    class="form-control col-md-7 col-xs-12"/><span id="devEmail1"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="devInfo">用户描述 <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="devInfo" name="devInfo" th:value="${devUser.devInfo}" required="required"
+                                                   placeholder="用户描述" class="form-control col-md-7 col-xs-12"/>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">创建用户 <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" th:value="${session.devName}" required="required"
+                                                   readonly="readonly"  class="form-control col-md-7 col-xs-12"/>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="creationDate">创建时间 <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="creationDate" name="creationDate" th:value="${devUser.getCreationDate()}" required="required"
+                                                   readonly="readonly"  class="form-control col-md-7 col-xs-12"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <button class="btn btn-success">
+                                                <a th:href="@{/dev/flatform/app/list}" style="color: white">查看本用户的APP应用</a>
+                                            </button>
+                                            <!--<c:if test="${appInfo.status == 3}">-->
+                                            <!--<button id="send" type="submit" name="status" value="1" class="btn btn-success">保存并再次提交审核</button>-->
+                                            <!--</c:if>-->
+                                            <button id="send" type="submit" class="btn btn-success">保存</button>
+                                            <button type="button" class="btn btn-primary" id="back" >
+                                                <a th:href="@{/dev/back}" style="color: white;">返回</a>
+                                                </button>
+                                            <br/><br/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">©2016 All Rights Reserved.</div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+
+</body>
+<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.js}" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/fastclick.js}" type="text/javascript"></script>
+<script th:src="@{/js/nprogress.js}" type="text/javascript"></script>
+<script th:src="@{/js/custom.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/dropzone.js}" type="text/javascript"></script>
+<script>
+    var state = false;
+    var state1= false;
+    var state2= false;
+    var state3= false;
+    var state4= false;
+    $("#devCode").focus(function () {
+        if (state == false) {
+            $(this).val('');
+        }
+    });
+    $("#devName").focus(function () {
+        if (state1 == false) {
+            $(this).val('');
+        }
+    });
+    $("#devPassword").focus(function () {
+        if (state2 == false) {
+            $(this).val('');
+        }
+    });
+    $("#devPassword1").focus(function () {
+        if (state3 == false) {
+            $(this).val('');
+        }
+    });
+    $("#devEmail").focus(function () {
+        if (state4 == false) {
+            $(this).val('');
+        }
+    });
+    $("#devCode").blur(function () {
+        if ($(this).val().trim() == '') {
+            $("#devCode1").css("color","red");
+        }
+        else {
+            if (/^[0-9a-zA-Z]+$/.test($(this).val()) == false) {
+                $("#devCode1").css("color","red");
+                $("#devCode1").text("账号格式不正确，请重新填写");
+
+            }
+            else {
+                $("#devCode1").css("color","green");
+                $("#devCode1").text('账号格式不正确');
+                state=true;
+            }
+        }
+    });
+    $("#devName").blur(function () {
+        if ($(this).val().trim() == '') {
+            $("#devName2").css("color","red");
+
+        }
+        else {
+            if (/^[0-9a-zA-Z]+$/.test($(this).val()) == false) {
+                $("#devName1").css("color","red");
+                $("#devName1").text("用户名格式正确，请重新填写");
+
+            }
+            else {
+                $("#devName1").css("color","green");
+                $("#devName1").text('用户名格式正确');
+                state1=true;
+            }
+        }
+    });
+    $("#devPassword").blur(function () {
+        if ($(this).val().trim() == '') {
+            $("#password").css("color","red");
+
+        }
+        else {
+            if (/^[0-9a-zA-Z]{6,12}$/.test($(this).val()) == false) {
+                $("#password").css("color","red");
+                $("#password").text("密码格式不正确，请重新填写");
+
+            }
+            else {
+                $("#password").css("color","green");
+                $("#password").text('密码格式正确');
+                state2=true;
+            }
+        }
+    });
+    $("#devPassword1").blur(function () {
+        if ($(this).val().trim() == '') {
+            $("#password2").css("color","red");
+
+        }
+        else {
+            var pas1= $("#devPassword").val();
+            var pas2= $("#devPassword1").val();
+            if (pas1 != pas2) {
+                $("#password2").css("color","red");
+                $("#password2").text('两次密码输入不相同');
+            }
+            else {
+                $("#password2").css("color","green");
+                $("#password2").text("两次密码相同");
+                state3=true;
+            }
+        }
+    })
+    $("#devEmail").blur(function () {
+        if ($(this).val().trim() == '') {
+            $("#devEmail1").css("color","red");
+
+        }
+        else {
+            if (/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-z0-9]{2,6}$/.test($(this).val()) == false) {
+                $("#devEmail1").css("color","red");
+                $("#devEmail1").text("邮箱格式不正确，请重新填写");
+
+            }
+            else {
+                $("#devEmail1").css("color","green");
+                $("#devEmail1").text('邮箱格式正确');
+                state4=true;
+            }
+        }
+    });
+</script>
+</html>
